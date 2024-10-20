@@ -32,16 +32,38 @@ namespace BulkyBook.DataAccess.Repository
             dbSet.RemoveRange(entities);
         }
 
-        public IEnumerable<T> GetAll()
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="includeProperties">CoverType</param>
+        /// <returns></returns>
+        public IEnumerable<T> GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }))
+                {
+                    query = query.Include(includeProp);
+                }
+
+            }
             return query.ToList();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> fillter)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> fillter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
             query = query.Where(fillter);
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }))
+                {
+                    query = query.Include(includeProp);
+                }
+
+            }
             return query.FirstOrDefault();
         }
     }
