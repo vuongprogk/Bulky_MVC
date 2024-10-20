@@ -9,7 +9,7 @@ namespace BulkyBook.Models
         public int ID { get; set; }
 
         [Required]
-        [DisplayName("Catagory Name")]
+        [DisplayName("Category Name")]
         [MaxLength(30)]
         public string Name { get; set; }
 
