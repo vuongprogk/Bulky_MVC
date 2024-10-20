@@ -10,7 +10,7 @@ namespace BulkyBook.DataAccess.Data
         {
 
         }
-        public DbSet<Category> Catagories { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,7 @@ namespace BulkyBook.DataAccess.Data
                 Price = 90,
                 Price50 = 85,
                 Price100 = 80,
-                CatagoryID = 1,
+                CategoryID = 1,
                 ImageURL = ""
                 
             },
@@ -45,7 +45,7 @@ namespace BulkyBook.DataAccess.Data
                     Price = 30,
                     Price50 = 25,
                     Price100 = 20,
-                    CatagoryID = 2,
+                    CategoryID = 2,
                     ImageURL = ""
 
                 },
@@ -60,7 +60,7 @@ namespace BulkyBook.DataAccess.Data
                     Price = 50,
                     Price50 = 40,
                     Price100 = 35,
-                    CatagoryID = 3,
+                    CategoryID = 3,
                     ImageURL = ""
 
                 },
@@ -75,8 +75,8 @@ namespace BulkyBook.DataAccess.Data
                     Price = 65,
                     Price50 = 60,
                     Price100 = 55,
-                    CatagoryID = 1,
-                ImageURL = ""
+                    CategoryID = 1,
+                    ImageURL = ""
 
                 },
                 new Product
@@ -90,7 +90,7 @@ namespace BulkyBook.DataAccess.Data
                     Price = 27,
                     Price50 = 25,
                     Price100 = 20,
-                    CatagoryID = 2,
+                    CategoryID = 2,
                     ImageURL = ""
                 },
                 new Product
@@ -104,7 +104,7 @@ namespace BulkyBook.DataAccess.Data
                     Price = 23,
                     Price50 = 22,
                     Price100 = 20,
-                    CatagoryID = 3,
+                    CategoryID = 3,
                     ImageURL = ""
                 });
         }
