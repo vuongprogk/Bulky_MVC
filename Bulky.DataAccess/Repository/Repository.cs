@@ -2,6 +2,7 @@
 using BulkyBook.DataAccess.Data;
 using BulkyBook.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BulkyBook.DataAccess.Repository
 {
@@ -38,9 +39,13 @@ namespace BulkyBook.DataAccess.Repository
         /// </summary>
         /// <param name="includeProperties">CoverType</param>
         /// <returns></returns>
-        public IEnumerable<T> GetAll(string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? fillter = null, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if (fillter != null)
+            {
+                query = query.Where(fillter);
+            }
             if (!string.IsNullOrEmpty(includeProperties))
             {
                 foreach (var includeProp in includeProperties.Split(new char[] { ',' }))
@@ -52,9 +57,17 @@ namespace BulkyBook.DataAccess.Repository
             return query.ToList();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> fillter, string? includeProperties = null)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> fillter, string? includeProperties = null, bool tracked = false)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query;
+            if (tracked)
+            {
+                query = dbSet;
+            }
+            else
+            {
+                query = dbSet.AsNoTracking();
+            }
             query = query.Where(fillter);
             if (!string.IsNullOrEmpty(includeProperties))
             {
@@ -65,6 +78,7 @@ namespace BulkyBook.DataAccess.Repository
 
             }
             return query.FirstOrDefault();
+
         }
     }
 }
