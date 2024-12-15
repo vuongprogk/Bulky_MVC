@@ -50,6 +50,8 @@ app.UseStaticFiles();
 app.UseAuthentication();
 
 app.UseAuthorization();
+app.MapRazorPages(); // add to map razor page
+app.MapControllerRoute(name: "default", pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(name: "default", pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
