@@ -46,7 +46,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
+// authentication action must be call before authorization()
+app.UseAuthentication();
 
 app.UseAuthorization();
 
