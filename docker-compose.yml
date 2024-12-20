@@ -1,0 +1,14 @@
+services:
+  bulkybookweb:
+    image: ${DOCKER_REGISTRY-}bulkybookweb
+    build:
+      context: .
+      dockerfile: BulkyWeb/Dockerfile
+    depends_on:
+        - bulkydb
+  bulkydb:
+    image: mysql:8.0
+    environment:
+        MYSQL_DATABASE: Bulky
+        MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    
